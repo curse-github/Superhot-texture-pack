@@ -8,7 +8,7 @@ prod = calcProd()
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 filename = "SuperHot"
 resourcepacks = os.path.expanduser( '~' ) + "\\AppData\\Roaming\\.minecraft\\resourcepacks\\"
-#shutil.copytree(resourcepacks + "1.19.3", resourcepacks + filename)
+shutil.copytree(resourcepacks + "1.19.3", resourcepacks + filename)
 os.chdir(resourcepacks + filename)
 for root, dirs, files in os.walk(resourcepacks + filename, topdown=False):
     for filename in files:
@@ -16,8 +16,8 @@ for root, dirs, files in os.walk(resourcepacks + filename, topdown=False):
         if not (filename.endswith('.png') or filename.endswith('.jpg')):
             continue
         ImageFile.LOAD_TRUNCATED_IMAGES = True
-        im = Image.open(filename)
-        convert(im, "RGBA", filename)
+        img = Image.open(filename)
+        im = img.convert("RGBA")
         im.save(filename)
         print (im.mode, filename)
         for x in range(im.width):
